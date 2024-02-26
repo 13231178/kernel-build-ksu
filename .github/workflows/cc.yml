@@ -21,7 +21,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           mkdir cc && cd cc
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
-          touch 112
+          touch 3333
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
           git add . && git commit -m "first commit" && git push
@@ -44,5 +44,6 @@ jobs:
           cd KernelSU
           cd $GITHUB_WORKSPACE
           cd cc
+          touch 4444
           git add . && git commit -m "first commit" && git push
           
