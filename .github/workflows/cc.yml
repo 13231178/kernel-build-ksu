@@ -20,12 +20,14 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           mkdir cc && cd cc
+          echo pwd
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
           touch 3333
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
           git add . && git commit -m "first commit" && git push
           mkdir K50 && cd K50
+          echo pwd
           sudo apt update && sudo apt install repo -y
           sudo git config --global user.name "root"
           sudo git config --global user.email "localhost"
@@ -40,10 +42,15 @@ jobs:
           sed -i 's/"android12-5.10-2022-01"/"deprecated\/android12-5.10-2022-01"/g' .repo/manifests/default.xml
           repo sync
           cd common
+          echo pwd
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
           cd KernelSU
+          echo pwd
           cd $GITHUB_WORKSPACE
+          echo pwd
           cd cc
+          echo pwd
+          echo 4444
           touch 4444
           git add . && git commit -m "first commit" && git push
           
