@@ -24,9 +24,11 @@ jobs:
           sudo git config --global user.name "root"
           sudo git config --global user.email "localhost"
           sudo timedatectl set-timezone Asia/Shanghai
-          git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
-          touch 112
-          git add . && git commit -m "first commit" && git push
+          sudo git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
+          sudo touch 112
+          sudo git config --global user.name 13231178
+          sudo git config --global user.email 13231178@qq.com
+          sudo git add . && git commit -m "first commit" && git push
 
       - name: Clone source code
         run: |
