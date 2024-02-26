@@ -20,9 +20,9 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           mkdir cc && cd cc
-          rm -rf *
           echo $(pwd)
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
+          rm -rf *
           touch 3333
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
