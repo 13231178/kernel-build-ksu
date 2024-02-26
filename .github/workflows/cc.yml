@@ -20,13 +20,13 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           mkdir K50 && cd K50
-          git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
-          touch 112
-          git add . && git commit -m "first commit" && git push
           sudo apt update && sudo apt install repo -y
           sudo git config --global user.name "root"
           sudo git config --global user.email "localhost"
           sudo timedatectl set-timezone Asia/Shanghai
+          git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
+          touch 112
+          git add . && git commit -m "first commit" && git push
 
       - name: Clone source code
         run: |
