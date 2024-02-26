@@ -20,6 +20,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           mkdir cc && cd cc
+          rm -rf *
           echo $(pwd)
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
           touch 3333
