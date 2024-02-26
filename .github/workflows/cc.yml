@@ -49,6 +49,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           echo $(pwd)
           cd cc
+          ls -a
           echo pwd
           echo 4444
           touch 4444
