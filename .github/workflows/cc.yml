@@ -1,0 +1,38 @@
+name: Kernel Build
+
+on:
+  repository_dispatch:
+    types: [manual-build]
+  workflow_dispatch:
+
+jobs:
+ KernelSU:
+    name: Build on ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set swap to 10G
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 10
+    
+      - name: Install dependencies
+        run: |
+          cd $GITHUB_WORKSPACE
+          mkdir K50 && cd K50
+          sudo apt update && sudo apt install repo -y
+          sudo git config --global user.name "root"
+          sudo git config --global user.email "localhost"
+          sudo timedatectl set-timezone Asia/Shanghai
+
+      - name: Clone source code
+        run: |
+          git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
+          git add . && git commit -m "first commit" && git push
+          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-01 --repo-rev=v2.16
+          sed -i 's/"android12-5.10-2022-01"/"deprecated\/android12-5.10-2022-01"/g' .repo/manifests/default.xml
+          repo sync
+          cd common
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+          cd KernelSU
+          
