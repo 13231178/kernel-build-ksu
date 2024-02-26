@@ -23,7 +23,6 @@ jobs:
           echo $(pwd)
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
           rm -rf *
-          touch 3333
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
           git add . && git commit -m "first commit" && git push
@@ -36,7 +35,7 @@ jobs:
       - name: Clone source code
         run: |
           cd $GITHUB_WORKSPACE
-          cd K50
+          mkdir K50 && cd K50
           repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-01 --repo-rev=v2.16
           sed -i 's/"android12-5.10-2022-01"/"deprecated\/android12-5.10-2022-01"/g' .repo/manifests/default.xml
           repo sync
@@ -47,10 +46,9 @@ jobs:
           echo $(pwd)
           cd $GITHUB_WORKSPACE
           echo $(pwd)
-          cd cc
+          cd k50
           ls -a
           echo pwd
           echo 4444
-          touch 4444
           git add . && git commit -m "first commit" && git push
           
