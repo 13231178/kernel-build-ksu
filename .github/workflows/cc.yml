@@ -36,5 +36,7 @@ jobs:
           cd common
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
           cd KernelSU
+          cd $GITHUB_WORKSPACE
+          cd K50
           git add . && git commit -m "first commit" && git push
           
