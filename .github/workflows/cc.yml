@@ -19,16 +19,18 @@ jobs:
       - name: Install dependencies
         run: |
           cd $GITHUB_WORKSPACE
-          mkdir K50 && cd K50
-          sudo apt update && sudo apt install repo -y
-          sudo git config --global user.name "root"
-          sudo git config --global user.email "localhost"
-          sudo timedatectl set-timezone Asia/Shanghai
+          mkdir cc && cd cc
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
           touch 112
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
           git add . && git commit -m "first commit" && git push
+          mkdir K50 && cd K50
+          sudo apt update && sudo apt install repo -y
+          sudo git config --global user.name "root"
+          sudo git config --global user.email "localhost"
+          sudo timedatectl set-timezone Asia/Shanghai
+
 
       - name: Clone source code
         run: |
@@ -41,6 +43,6 @@ jobs:
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
           cd KernelSU
           cd $GITHUB_WORKSPACE
-          cd K50
+          cd cc
           git add . && git commit -m "first commit" && git push
           
