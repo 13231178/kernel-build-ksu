@@ -78,13 +78,13 @@ jobs:
 
       - name: Set environment variable
         run: |
-          echo "https://github.com/uchengX/kernel-build-rubens/releases/download/latest/boot-gz.tar.gz" >> url.txt
+          echo "https://github.com/13231178/kernel-build-rubens-k50/releases/download/latest/boot-gz.tar.gz" >> url.txt
           echo "MESSAGE_FILE_PATH=$(cat url.txt)" >> $GITHUB_ENV
 
-      - name: Send message via Telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "构建任务已完成，当前构建版本为：${{ env.KSU_VERSION }}，请点击以下链接进行下载: ${{ env.MESSAGE_FILE_PATH }}"
+      #- name: Send message via Telegram
+      #  uses: appleboy/telegram-action@master
+      #  with:
+      #    to: ${{ secrets.CHAT_ID }}
+      #    token: ${{ secrets.TELEGRAM_TOKEN }}
+      #    message: "构建任务已完成，当前构建版本为：${{ env.KSU_VERSION }}，请点击以下链接进行下载: ${{ env.MESSAGE_FILE_PATH }}"
 
