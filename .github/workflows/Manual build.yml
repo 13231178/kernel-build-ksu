@@ -20,7 +20,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           #mkdir K50 && cd K50
-          #sudo apt update && sudo apt install repo -y
+          sudo apt update && sudo apt install repo -y
           sudo git config --global user.name "root"
           sudo git config --global user.email "localhost"
           sudo timedatectl set-timezone Asia/Shanghai
