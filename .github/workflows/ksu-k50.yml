@@ -1,4 +1,4 @@
-name: ksu-k50 Kernel Build
+name: ksu-k50-frida Kernel Build
 
 on:
   repository_dispatch:
@@ -7,16 +7,16 @@ on:
 
 jobs:
  KernelSU:
-    name: Build on ubuntu-latest
+    name: Build on ubuntu-latest 在ubuntu最新版上构建
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set swap to 10G
+      - name: Set swap to 10G 将swap设置为10G
         uses: pierotofy/set-swap-space@master
         with:
           swap-size-gb: 10
     
-      - name: Install dependencies
+      - name: Install dependencies 安装依赖关系
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt update && sudo apt install repo -y
@@ -24,7 +24,7 @@ jobs:
           sudo git config --global user.email "localhost"
           sudo timedatectl set-timezone Asia/Shanghai
 
-      - name: Clone source code
+      - name: Clone source code 克隆源代码
         run: |
           #repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-01 --repo-rev=v2.16
           #sed -i 's/"android12-5.10-2022-01"/"deprecated\/android12-5.10-2022-01"/g' .repo/manifests/default.xml
@@ -37,7 +37,7 @@ jobs:
           cd KernelSU
           echo "KSU_VERSION=$(($(git rev-list --count HEAD) + 10200))" >> $GITHUB_ENV
 
-      - name: Build images
+      - name: Build images 构建图像
         run: |
           sed -i 's/ -dirty//g' common/scripts/setlocalversion
           sed -i 's/check_defconfig//g' common/build.config.gki
@@ -61,22 +61,22 @@ jobs:
           $AVBTOOL add_hash_footer --partition_name boot --partition_size $((64 * 1024 * 1024)) --image boot-gz.img --algorithm SHA256_RSA2048 --key $GITHUB_WORKSPACE/prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
           sudo tar -czvf boot-gz.tar.gz boot-gz.img
           
-      - name: Upload build artifact
+      - name: Upload build artifact 上传构建工件
         uses: actions/upload-artifact@v3
         with:
           name: 5.10.66_${{ env.KSU_VERSION }}
           path: out/android12-5.10/dist/boot-gz.tar.gz
 
-      - name: Release
+      - name: Release 释放
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKENS }}
         with:
-          tag_name: latest
+          tag_name: latest#最新的
           name: 5.10.66-${{ env.KSU_VERSION }} Kernel for Rubens
           files: out/android12-5.10/dist/boot-gz.tar.gz
 
-      - name: Set environment variable
+      - name: Set environment variable 设置环境变量
         run: |
           echo "https://github.com/13231178/kernel-build-rubens-k50/releases/download/latest/boot-gz.tar.gz" >> url.txt
           echo "MESSAGE_FILE_PATH=$(cat url.txt)" >> $GITHUB_ENV
