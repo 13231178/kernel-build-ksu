@@ -32,7 +32,7 @@ jobs:
           #repo sync
           #cd common
           #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
-          cd KernelSU
+          #cd KernelSU
           git clone https://github.com/13231178/k50-5.10.66 K50
           cd K50
           mv * ../
