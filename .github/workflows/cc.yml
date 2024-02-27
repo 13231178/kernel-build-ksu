@@ -46,7 +46,7 @@ jobs:
           echo $(pwd)
           cd $GITHUB_WORKSPACE
           echo $(pwd)
-          cd k50
+          cd K50
           ls -a
           echo pwd
           echo 4444
