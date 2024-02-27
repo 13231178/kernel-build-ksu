@@ -50,5 +50,6 @@ jobs:
           ls -a
           echo pwd
           echo 4444
+          rm -rf .repo
           git add . && git commit -m "first commit" && git push
           
