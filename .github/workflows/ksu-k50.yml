@@ -1,4 +1,4 @@
-name: Kernel Build
+name: ksu-k50 Kernel Build
 
 on:
   repository_dispatch:
