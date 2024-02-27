@@ -19,8 +19,8 @@ jobs:
       - name: Install dependencies
         run: |
           cd $GITHUB_WORKSPACE
-          mkdir K50 && cd K50
-          sudo apt update && sudo apt install repo -y
+          #mkdir K50 && cd K50
+          #sudo apt update && sudo apt install repo -y
           sudo git config --global user.name "root"
           sudo git config --global user.email "localhost"
           sudo timedatectl set-timezone Asia/Shanghai
@@ -32,10 +32,13 @@ jobs:
           #repo sync
           #cd common
           #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
-          #cd KernelSU
-          #echo "KSU_VERSION=$(($(git rev-list --count HEAD) + 10200))" >> $GITHUB_ENV
-          git clone https://github.com/13231178/k50-5.10.66 ./
-
+          cd KernelSU
+          git clone https://github.com/13231178/k50-5.10.66 K50
+          cd K50
+          mv * ../
+          cd ../
+          cd KernelSU
+          echo "KSU_VERSION=$(($(git rev-list --count HEAD) + 10200))" >> $GITHUB_ENV
       - name: Build images
         run: |
           sed -i 's/ -dirty//g' common/scripts/setlocalversion
