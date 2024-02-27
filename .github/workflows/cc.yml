@@ -29,7 +29,7 @@ jobs:
           rm -rf *
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
-          git add . && git commit -m "first commit" && git push
+          #git add . && git commit -m "first commit" && git push
       - name: Clone source code
         run: |
           #cd $GITHUB_WORKSPACE
