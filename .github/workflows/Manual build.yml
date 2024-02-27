@@ -35,6 +35,7 @@ jobs:
           #cd KernelSU
           git clone https://github.com/13231178/k50-5.10.66 K50
           cd K50
+          rm -rf .git
           mv * ../
           cd ../common/KernelSU
           echo "KSU_VERSION=$(($(git rev-list --count HEAD) + 10200))" >> $GITHUB_ENV
