@@ -39,7 +39,7 @@ jobs:
           repo sync
           cd $GITHUB_WORKSPACE
           echo $(pwd)
-          cd K50
+          #cd K50
           ls -a
           echo pwd
           rm -rf .repo
