@@ -34,6 +34,7 @@ jobs:
           #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
           #cd KernelSU
           git clone https://github.com/13231178/k50-5.10.66 K50
+          rm -rf .git
           cd K50
           rm -rf .git
           mv * ../
