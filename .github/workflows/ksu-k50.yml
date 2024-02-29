@@ -1,9 +1,13 @@
 name: ksu-k50-frida Kernel Build
 
 on:
-  repository_dispatch:
-    types: [manual-build]
-  workflow_dispatch:
+  schedule:
+      # 星期六中午12点跑一次
+      - cron: '00 12 * * 6'
+  #main分支代码变动后自动编译
+  push:
+    branches:
+      - main
 
 jobs:
  KernelSU:
