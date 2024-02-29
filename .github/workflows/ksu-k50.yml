@@ -35,7 +35,7 @@ jobs:
           #repo sync
           ls -a
           rm -rf *
-          git clone https://github.com/13231178/cc.git ./
+          git clone https://github.com/13231178/k50-5.10.66.git ./
           cd common
           remote_version=$(curl -L https://api.github.com/repos/tiann/KernelSU/releases/latest | jq -r .tag_name)
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s $remote_version
