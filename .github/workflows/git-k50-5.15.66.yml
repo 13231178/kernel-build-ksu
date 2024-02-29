@@ -16,7 +16,7 @@ jobs:
         with:
           swap-size-gb: 10
     
-      - name: Install dependencies
+      - name: 安装依赖及初始化cc仓库
         run: |
           #cd $GITHUB_WORKSPACE
           #mkdir K50 && cd K50
@@ -31,18 +31,16 @@ jobs:
           git config --global user.name 13231178
           git config --global user.email 13231178@qq.com
           #git add . && git commit -m "first commit" && git push
-      - name: Clone source code
+      - name: 克隆内核源码-提交github
         run: |
           #cd $GITHUB_WORKSPACE
           #cd K50
           repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-01 --repo-rev=v2.16
           sed -i 's/"android12-5.10-2022-01"/"deprecated\/android12-5.10-2022-01"/g' .repo/manifests/default.xml
           repo sync
-          cd $GITHUB_WORKSPACE
+          #cd $GITHUB_WORKSPACE
           echo $(pwd)
-          #cd K50
           ls -a
-          echo pwd
           rm -rf .repo
           git add . && git commit -m "first commit" && git push
           
