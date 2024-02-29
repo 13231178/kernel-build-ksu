@@ -1,4 +1,4 @@
-name: cc Build
+name: 获取google-kernel到github
 
 on:
   repository_dispatch:
