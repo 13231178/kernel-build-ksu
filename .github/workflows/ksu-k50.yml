@@ -37,9 +37,10 @@ jobs:
           rm -rf *
           git clone https://github.com/13231178/cc.git ./
           cd common
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+          remote_version=$(curl -L https://api.github.com/repos/tiann/KernelSU/releases/latest | jq -r .tag_name)
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s $remote_version
           cd KernelSU
-          echo "KSU_VERSION=$(($(git rev-list --count HEAD) + 10200))" >> $GITHUB_ENV
+          echo "KSU_VERSION=$(remote_version)-$(($(git rev-list --count HEAD) + 10200))" >> $GITHUB_ENV
 
       - name: Build images 构建图像
         run: |
@@ -68,7 +69,7 @@ jobs:
       - name: Upload build artifact 上传构建工件
         uses: actions/upload-artifact@v3
         with:
-          name: 5.10.66_${{ env.KSU_VERSION }}
+          name: 5.10.66-${{ env.KSU_VERSION }}
           path: out/android12-5.10/dist/boot-gz.tar.gz
 
       - name: Release 释放
@@ -76,8 +77,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKENS }}
         with:
-          tag_name: latest#最新的
-          name: 5.10.66-${{ env.KSU_VERSION }} Kernel for Rubens
+          tag_name: 5.10.66-${{ env.KSU_VERSION }}
+          name: 5.10.66-${{ env.KSU_VERSION }}
           files: out/android12-5.10/dist/boot-gz.tar.gz
 
       #- name: Set environment variable 设置环境变量
