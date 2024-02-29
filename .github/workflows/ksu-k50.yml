@@ -76,10 +76,10 @@ jobs:
           name: 5.10.66-${{ env.KSU_VERSION }} Kernel for Rubens
           files: out/android12-5.10/dist/boot-gz.tar.gz
 
-      - name: Set environment variable 设置环境变量
-        run: |
-          echo "https://github.com/13231178/kernel-build-rubens-k50/releases/download/latest/boot-gz.tar.gz" >> url.txt
-          echo "MESSAGE_FILE_PATH=$(cat url.txt)" >> $GITHUB_ENV
+      #- name: Set environment variable 设置环境变量
+      #  run: |
+      #    echo "https://github.com/13231178/kernel-build-rubens-k50/releases/download/latest/boot-gz.tar.gz" >> url.txt
+      #    echo "MESSAGE_FILE_PATH=$(cat url.txt)" >> $GITHUB_ENV
 
       #- name: Send message via Telegram
       #  uses: appleboy/telegram-action@master
