@@ -25,6 +25,7 @@ jobs:
           sudo git config --global user.name "root"
           sudo git config --global user.email "localhost"
           sudo timedatectl set-timezone Asia/Shanghai
+          #先创建一个cc仓库才能正常使用
           git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
           rm -rf *
           git config --global user.name 13231178
