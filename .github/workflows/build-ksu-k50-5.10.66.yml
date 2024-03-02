@@ -1,4 +1,4 @@
-name: ksu-k50-frida Kernel Build
+name: ksu-k50-frida-5.10.66 Kernel Build
 
 on:
   schedule:
