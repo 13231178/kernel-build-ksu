@@ -1,0 +1,46 @@
+name: 获取google-kernel到github
+
+on:
+  repository_dispatch:
+    types: [manual-build]
+  workflow_dispatch:
+
+jobs:
+ KernelSU:
+    name: Build on ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set swap to 10G
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 10
+    
+      - name: 安装依赖及初始化cc仓库
+        run: |
+          #cd $GITHUB_WORKSPACE
+          #mkdir K50 && cd K50
+          echo $(pwd)
+          sudo apt update && sudo apt install repo -y
+          sudo git config --global user.name "root"
+          sudo git config --global user.email "localhost"
+          sudo timedatectl set-timezone Asia/Shanghai
+          #先创建一个cc仓库才能正常使用
+          git clone https://${{ secrets.GIT_TOKenS }}@github.com/13231178/cc.git ./
+          rm -rf *
+          git config --global user.name 13231178
+          git config --global user.email 13231178@qq.com
+          #git add . && git commit -m "first commit" && git push
+      - name: 克隆内核源码-提交github
+        run: |
+          #cd $GITHUB_WORKSPACE
+          #cd K50
+          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-01 --repo-rev=v2.16
+          sed -i 's/"android12-5.10-2022-05"/"deprecated\/android12-5.10-2022-05"/g' .repo/manifests/default.xml
+          repo sync
+          #cd $GITHUB_WORKSPACE
+          echo $(pwd)
+          ls -a
+          rm -rf .repo
+          git add . && git commit -m "first commit" && git push
+          
