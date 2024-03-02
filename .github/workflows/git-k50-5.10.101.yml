@@ -35,7 +35,7 @@ jobs:
         run: |
           #cd $GITHUB_WORKSPACE
           #cd K50
-          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-01 --repo-rev=v2.16
+          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2022-05 --repo-rev=v2.16
           sed -i 's/"android12-5.10-2022-05"/"deprecated\/android12-5.10-2022-05"/g' .repo/manifests/default.xml
           repo sync
           #cd $GITHUB_WORKSPACE
