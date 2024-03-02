@@ -7,7 +7,7 @@ on:
   #main分支代码变动后自动编译
   push:
     branches:
-      - #main
+      - //main
 
 jobs:
  KernelSU:
