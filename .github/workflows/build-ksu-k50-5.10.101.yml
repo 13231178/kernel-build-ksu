@@ -4,6 +4,7 @@ on:
   schedule:
       # 星期六中午12点跑一次
       - cron: '00 12 * * 6'
+  workflow_dispatch:
   #main分支代码变动后自动编译
   #push:
   #  branches:
