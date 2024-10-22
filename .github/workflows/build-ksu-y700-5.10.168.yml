@@ -63,16 +63,20 @@ jobs:
           BOOT_IMG=$(find . -maxdepth 1 -name "boot*.img")
           $UNPACK_BOOTIMG --boot_img="$BOOT_IMG"
           rm "$BOOT_IMG"
-          $GZIP -n -k -f -9 Image >Image.gz
-          $MKBOOTIMG --header_version 4 --kernel Image.gz --output boot-gz.img --ramdisk out/ramdisk --os_version 12.0.0 --os_patch_level "${PATCH_LEVEL}"
-          $AVBTOOL add_hash_footer --partition_name boot --partition_size $((64 * 1024 * 1024)) --image boot-gz.img --algorithm SHA256_RSA2048 --key $GITHUB_WORKSPACE/prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
-          sudo tar -czvf boot-gz.tar.gz boot-gz.img
-          
+          #修改不压缩
+          #$GZIP -n -k -f -9 Image >Image.gz
+          #$MKBOOTIMG --header_version 4 --kernel Image.gz --output boot-gz.img --ramdisk out/ramdisk --os_version 12.0.0 --os_patch_level "${PATCH_LEVEL}"
+          #$AVBTOOL add_hash_footer --partition_name boot --partition_size $((64 * 1024 * 1024)) --image boot-gz.img --algorithm SHA256_RSA2048 --key $GITHUB_WORKSPACE/prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
+          #sudo tar -czvf boot-gz.tar.gz boot-gz.img
+
+          $MKBOOTIMG --header_version 4 --kernel Image --output boot.img --ramdisk out/ramdisk --os_version 12.0.0 --os_patch_level "${PATCH_LEVEL}"
+          $AVBTOOL add_hash_footer --partition_name boot --partition_size $((64 * 1024 * 1024)) --image boot.img --algorithm SHA256_RSA2048 --key $GITHUB_WORKSPACE/prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
+          sudo tar -czvf boot.tar.gz boot.img
       - name: Upload build artifact 上传构建工件
         uses: actions/upload-artifact@v3
         with:
           name: y700-5.10.168-${{ env.KSU_VERSION }}
-          path: out/android12-5.10/dist/boot-gz.tar.gz
+          path: out/android12-5.10/dist/boot.tar.gz
 
       - name: Release 释放
         uses: softprops/action-gh-release@v1
@@ -81,7 +85,7 @@ jobs:
         with:
           tag_name: y700-5.10.168-${{ env.KSU_VERSION }}
           name: y700-5.10.168-${{ env.KSU_VERSION }}
-          files: out/android12-5.10/dist/boot-gz.tar.gz
+          files: out/android12-5.10/dist/boot.tar.gz
 
       #- name: Set environment variable 设置环境变量
       #  run: |
