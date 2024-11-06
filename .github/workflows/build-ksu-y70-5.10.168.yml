@@ -31,8 +31,8 @@ jobs:
 
       - name: Clone source code 克隆源代码
         run: |
-          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2023-11 --repo-rev=v2.16
-          sed -i 's/"android12-5.10-2023-11"/"deprecated\/android12-5.10-2023-11"/g' .repo/manifests/default.xml
+          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2023-10 --repo-rev=v2.16
+          sed -i 's/"android12-5.10-2023-10"/"deprecated\/android12-5.10-2023-10"/g' .repo/manifests/default.xml
           repo sync
           #ls -a
           #rm -rf *
@@ -53,7 +53,7 @@ jobs:
           sed -i 's/scm:++/scm:+/' common/scripts/setlocalversion
           LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
           cd out/android12-5.10/dist
-          export PATCH_LEVEL=2023-11
+          export PATCH_LEVEL=2023-10
           export AVBTOOL=$GITHUB_WORKSPACE/build/build-tools/path/linux-x86/avbtool
           export GZIP=$GITHUB_WORKSPACE/prebuilts/build-tools/path/linux-x86/gzip
           export MKBOOTIMG=$GITHUB_WORKSPACE/tools/mkbootimg/mkbootimg.py
