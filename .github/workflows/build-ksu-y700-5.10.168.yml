@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Set swap to 10G 将swap设置为10G
-        uses: actions/upload-artifact@v4
+        uses: actions/checkout@v4
         with:
           swap-size-gb: 10
     
@@ -73,7 +73,7 @@ jobs:
           $AVBTOOL add_hash_footer --partition_name boot --partition_size $((64 * 1024 * 1024)) --image boot.img --algorithm SHA256_RSA2048 --key $GITHUB_WORKSPACE/prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
           sudo tar -czvf boot.tar.gz boot.img
       - name: Upload build artifact 上传构建工件
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: y700-5.10.168-${{ env.KSU_VERSION }}
           path: out/android12-5.10/dist/boot.tar.gz
