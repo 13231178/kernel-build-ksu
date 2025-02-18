@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Set swap to 10G 将swap设置为10G
-        uses: pierotofy/set-swap-space@master
+        uses: actions/checkout@v4
         with:
           swap-size-gb: 10
     
