@@ -38,10 +38,10 @@ jobs:
           #rm -rf *
           #git clone https://github.com/13231178/y700-5.10.168.git ./
           cd common
-          remote_version=$(curl -L https://api.github.com/repos/tiann/KernelSU/releases/latest | jq -r .tag_name)
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s $remote_version
-          cd KernelSU
-          echo KSU_VERSION=$remote_version-$(($(git rev-list --count HEAD) + 10200)) | tee -a $GITHUB_ENV
+          #remote_version=$(curl -L https://api.github.com/repos/tiann/KernelSU/releases/latest | jq -r .tag_name)
+          #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s $remote_version
+          #cd KernelSU
+          #echo KSU_VERSION=$remote_version-$(($(git rev-list --count HEAD) + 10200)) | tee -a $GITHUB_ENV
 
 
       - name: Build images 构建图像
