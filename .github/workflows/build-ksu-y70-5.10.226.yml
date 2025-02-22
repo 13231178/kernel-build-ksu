@@ -31,9 +31,6 @@ jobs:
 
       - name: Clone source code 克隆源代码
         run: |
-          #repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2023-05 --repo-rev=v2.16
-          #sed -i 's/"android12-5.10-2023-05"/"deprecated\/android12-5.10-2023-05"/g' .repo/manifests/default.xml
-          #repo sync
           ls -a
           rm -rf *
           git clone https://github.com/13231178/y70-5.10.226.git ./
