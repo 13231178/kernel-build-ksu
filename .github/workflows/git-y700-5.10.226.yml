@@ -1,5 +1,5 @@
 
-name: 获取google-kernel-5.10.168到github
+name: 获取google-kernel-5.10.226到github
 
 on:
   repository_dispatch:
