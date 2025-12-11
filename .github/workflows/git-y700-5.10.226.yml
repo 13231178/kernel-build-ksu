@@ -1,5 +1,5 @@
 
-name: 获取google-kernel-5.10.226到github
+name: 获取google-kernel-5.10.209到github
 
 on:
   repository_dispatch:
@@ -36,7 +36,7 @@ jobs:
         run: |
           #cd $GITHUB_WORKSPACE
           #cd K50
-          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2024-11 --repo-rev=v2.16
+          repo init --depth=1 -u https://android.googlesource.com/kernel/manifest -b common-android12-5.10-2024-05 --repo-rev=v2.16
           #sed -i 's/"android12-5.10-2024-11"/"deprecated\/android12-5.10-2024-11"/g' .repo/manifests/default.xml
           repo sync
           #cd $GITHUB_WORKSPACE
